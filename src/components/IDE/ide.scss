@@ -1,0 +1,294 @@
+.ideContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: red;
+  // overflow: hidden;
+  .editorWrapper {
+    display: flex;
+    // flex: 1;
+    // flex-grow: 1;
+    height: 100%;
+    .editor {
+      flex: 1;
+      background-color: blue;
+      display: flex;
+    }
+    .outPut {
+      max-width: 450px;
+      width: 40%;
+      padding: 10px;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      align-items: center;
+      .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .fate-heading {
+          margin: auto;
+          font-family: "Share Tech Mono", monospace;
+          font-size: 2.5rem;
+          color: #ff3c3c;
+          background-color: #0a0a0a;
+          border: 2px solid #ff3c3c;
+          padding: 12px 28px;
+          border-radius: 10px;
+          display: inline-block;
+          text-align: center;
+          text-shadow: 0 0 5px #ff3c3c, 0 0 10px #ff3c3c;
+          position: relative;
+          animation: flicker 1.8s infinite alternate,
+            glitch-slice 0.8s infinite alternate;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .fate-heading::before {
+          content: "⛧";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 6rem;
+          color: #ff0000;
+          opacity: 0.3;
+          animation: glitch-slice 0.8s infinite alternate;
+          z-index: -1;
+        }
+      }
+
+      .output-container {
+        background-color: #1e1e1e;
+        border: 2px solid #ff3c3c;
+        border-radius: 10px;
+        padding: 20px;
+        color: white;
+        font-family: "Share Tech Mono", monospace;
+        font-size: 1.2rem;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 0 10px rgba(255, 60, 60, 0.6),
+          0 0 20px rgba(255, 60, 60, 0.3);
+        overflow: hidden;
+        animation: flickerContainer 1s infinite alternate;
+        flex-grow: 1;
+        // height: 70%;
+        overflow: auto;
+        display: flex;
+        margin: 10px 0;
+        width: 100%;
+        .output-text {
+          position: relative;
+          z-index: 1;
+          opacity: 0.9;
+          overflow: auto;
+          height: 100%;
+          width: 100%;
+        }
+
+        &:before {
+          content: "⛧";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(-45deg);
+          font-size: 8rem;
+          color: #ff0000;
+          opacity: 0.1;
+          animation: glitch-slice-container 0.8s infinite alternate;
+          z-index: -1;
+        }
+      }
+
+      .actionButtons {
+        .run-code-btn {
+          background-color: #ff3c3c;
+          color: white;
+          border: 2px solid #ff3c3c;
+          padding: 8px 20px;
+          font-size: 1.2rem;
+          font-family: "Share Tech Mono", monospace;
+          text-transform: uppercase;
+          border-radius: 5px;
+          cursor: pointer;
+          outline: none;
+          position: relative;
+          overflow: hidden;
+          animation: flickerButton 0.8s infinite alternate,
+            shake 0.5s infinite alternate;
+
+          &:hover {
+            background-color: #ff0000;
+            box-shadow: 0 0 10px #ff3c3c, 0 0 20px #ff0000;
+          }
+
+          &:active {
+            background-color: #ff1a1a;
+            transform: scale(0.95);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 5px #ff3c3c, 0 0 10px #ff3c3c;
+  }
+  5% {
+    opacity: 0.8;
+    text-shadow: 0 0 3px #ff1a1a;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  40% {
+    opacity: 1;
+    text-shadow: 0 0 8px #ff3c3c, 0 0 16px #ff0000;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+    text-shadow: 0 0 6px #ff3c3c;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #ff3c3c, 0 0 20px #ff0000;
+  }
+}
+
+@keyframes glitch-slice {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  10% {
+    transform: translateX(-10px) skewX(-10deg);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateX(10px) skewX(10deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-5px) skewX(-5deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(0) skewX(0deg);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(10px) skewX(10deg);
+    opacity: 0.9;
+  }
+  90% {
+    transform: translateX(-5px) skewX(-5deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(0) skewX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flickerButton {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 5px #ff3c3c;
+  }
+  50% {
+    opacity: 0.6;
+    text-shadow: 0 0 15px #ff0000;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #ff3c3c, 0 0 25px #ff0000;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/////
+///
+///
+
+@keyframes glitch-slice-container {
+  0% {
+    transform: translateX(0) rotate(-45deg);
+    opacity: 0.1;
+  }
+  20% {
+    transform: translateX(-15px) rotate(-50deg);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translateX(10px) rotate(10deg);
+    opacity: 0.2;
+  }
+  60% {
+    transform: translateX(-5px) rotate(-10deg);
+    opacity: 0.4;
+  }
+  80% {
+    transform: translateX(15px) rotate(10deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(0) rotate(-45deg);
+    opacity: 0.1;
+  }
+}
+@keyframes flickerContainer {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 5px #ff3c3c;
+  }
+  20% {
+    opacity: 0.7;
+    text-shadow: 0 0 10px #ff0000;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 15px #ff3c3c;
+  }
+  80% {
+    opacity: 1;
+    text-shadow: 0 0 25px #ff0000;
+  }
+  100% {
+    opacity: 0.6;
+    text-shadow: 0 0 10px #ff3c3c;
+  }
+}
