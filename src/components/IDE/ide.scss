@@ -13,6 +13,25 @@
       flex: 1;
       background-color: blue;
       display: flex;
+      position: relative;
+      .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        video {
+          // width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          // blur
+          filter: blur(5px);
+        }
+      }
     }
     .outPut {
       max-width: 450px;
@@ -89,6 +108,10 @@
           overflow: auto;
           height: 100%;
           width: 100%;
+          text-align: left;
+
+          white-space: "pre-wrap";
+          font-family: "monospace"
         }
 
         &:before {

@@ -41,17 +41,33 @@ export default function IDE() {
       <div className="topActions"></div>
       <div className="editorWrapper">
         <div className="editor">
+          <div className="background">
+            {/* video full */}
+            <video autoPlay loop muted className="backgroundVideo">
+              <source src="/videoplayback (3).mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
           <Editor
             height="100%"
-            defaultLanguage="javascript"
-            defaultValue="// some comment"
+            defaultValue={`println "I Surrender!";`}
             theme="vs-dark"
+            language="plaintext"
             options={{
               padding: { top: 20, bottom: 20 },
               fontSize: 16,
+              minimap: { enabled: false },
             }}
-            onMount={(editor) => {
+            onMount={(editor, monaco) => {
               editorRef.current = editor;
+              monaco.editor.defineTheme("vs-dark", {
+                base: "vs-dark",
+                inherit: true,
+                rules: [],
+                colors: {
+                  "editor.background": "#00000080",
+                },
+              });
             }}
           />
         </div>
@@ -62,7 +78,7 @@ export default function IDE() {
             </h2>
           </div>
           <div className="output-container">
-            <p className="output-text">{response}</p>
+            <pre className="output-text">{response}</pre>
           </div>
 
           <div className="actionButtons">

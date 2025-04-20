@@ -72,9 +72,11 @@ export default async function handelCode(value: string) {
     const outputFile = await axios.get(outputFileLink, {
       responseType: "arraybuffer",
     });
-    const outputFileText = Buffer.from(outputFile.data, "binary").toString(
-      "utf-8"
-    );
+    // const outputFileText = Buffer.from(outputFile.data, "binary").toString(
+    //   "utf-8"
+    // );
+    const outputFileText = Buffer.from(outputFile.data).toString("utf-8");
+
     console.log("Output file text:", outputFileText);
 
     return outputFileText;
