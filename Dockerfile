@@ -1,5 +1,5 @@
 # Stage 1: Build the Next.js application
-FROM node:20-slim AS builder
+FROM node:22-slim AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --omit=dev
+RUN npm i
 
 # Copy the rest of the application code
 COPY . .
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Production image
-FROM node:20-slim AS production
+FROM node:22-slim AS production
 
 # Set the working directory
 WORKDIR /app
@@ -28,7 +28,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
 # Install only production dependencies
-RUN npm ci --omit=dev
+RUN npm i
 
 # Expose the port Next.js listens on
 EXPOSE 3000
